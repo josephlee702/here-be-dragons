@@ -11,25 +11,34 @@ class Nytimes
     it 'can get status' do 
       #FINISHED EXAMPLE: Using @hash, define a variable called `result` that returns the status
       result = @hash[:status]
-      
+
       expect(result).to eq("OK")
     end
 
-    xit 'can get copyright' do 
+    it 'can get copyright' do 
       #Using @hash, define a variable called `result` that returns the copyright
-
+      result = @hash[:copyright]
       expect(result).to eq("Copyright (c) 2018 The New York Times Company. All Rights Reserved.")
     end
 
-    xit 'can get array of stories' do 
+    it 'can get array of stories' do 
       #Using @hash, define a variable called `result` that returns the array of stories
-  
+      result = @hash[:results]
+
       expect(result).to be_an_instance_of(Array)
       expect(result.count).to eq(44)
     end
 
-    xit 'can get all stories with subsection of politics' do 
+    it 'can get all stories with subsection of politics' do 
       #Using @hash, define a variable called `result` that returns all stories with subsection of politics.
+
+      result = []
+      
+      @hash[:results].map do |x|
+        if x[:subsection] == "Politics"
+          result << x
+        end
+      end
   
       expect(result).to be_an_instance_of(Array)
       expect(result.count).to eq(6)
@@ -37,5 +46,4 @@ class Nytimes
       expect(result.last[:title]).to eq("Conspiracy Theories Made Alex Jones Very Rich. They May Bring Him Down.")
     end
   end 
-
 end
